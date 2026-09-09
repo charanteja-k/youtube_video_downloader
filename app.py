@@ -18,7 +18,7 @@ def _download_logic(url):
         'outtmpl': '%(title)s.%(ext)s',
         'extractor_args': {
             'youtube': {
-                'player_client': ['ios', 'android', 'mweb', 'web']
+                'player_client': ['android_vr', 'android', 'ios', 'web']
             }
         },
         'nocheckcertificate': True,
