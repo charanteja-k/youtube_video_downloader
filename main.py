@@ -1,6 +1,11 @@
-import yt_dlp
+import yt_dlp   
 
-url = input("Enter URL : ")
+
+print('=+'*50,end='')
+print('\nYoutube Video Downloader')
+print('=+'*50,end='')
+
+url = input("\nEnter URL : ")
 
 ydl_opts = {
     'format': 'bestvideo+bestaudio/best',
@@ -13,3 +18,4 @@ ydl_opts = {
 
 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
     ydl.download([url])
+    
