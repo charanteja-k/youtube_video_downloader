@@ -1,3 +1,15 @@
+---
+title: Youtube Video Downloader
+emoji: 🎬
+colorFrom: red
+colorTo: orange
+sdk: gradio
+sdk_version: 6.26.0
+app_file: app.py
+pinned: false
+license: mit
+---
+
 # YouTube Video Downloader (CLI & Web UI) 🎥
 
 A lightweight, robust Python application built with [`yt-dlp`](https://github.com/yt-dlp/yt-dlp), [`ffmpeg`](https://ffmpeg.org/), and [`Gradio`](https://gradio.app/) to download high-quality YouTube videos directly in `.mp4` format.
@@ -78,7 +90,7 @@ Then open `http://127.0.0.1:7860` in your browser!
 
 ---
 
-## 🌐 Deploying to Hugging Face Spaces (Free Cloud Hosting)
+## 🌐 Deploying to Hugging Face Spaces
 
 1. Create a **New Space** on [Hugging Face](https://huggingface.co/new-space).
 2. Select **Gradio** as the Space SDK.
