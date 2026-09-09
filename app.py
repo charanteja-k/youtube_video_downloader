@@ -38,8 +38,7 @@ demo = gr.Interface(
         gr.Textbox(label="Status")
     ],
     title="🎬 YouTube Video Downloader Web App",
-    description="Download high-resolution YouTube videos directly in MP4 format.",
-    theme="soft"
+    description="Download high-resolution YouTube videos directly in MP4 format."
 )
 
 if __name__ == "__main__":
