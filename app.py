@@ -16,7 +16,11 @@ def _download_logic(url):
         'format': 'bestvideo+bestaudio/best',
         'merge_output_format': 'mp4',
         'outtmpl': '%(title)s.%(ext)s',
-        'extractor_args': {'youtube': {'player_client': ['android', 'web']}},
+        'extractor_args': {
+            'youtube': {
+                'player_client': ['ios', 'android', 'mweb', 'web']
+            }
+        },
         'nocheckcertificate': True,
         'retries': 10,
         'fragment_retries': 10,

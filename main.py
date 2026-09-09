@@ -1,16 +1,19 @@
 import yt_dlp   
 
-
-print('=+'*50,end='')
+print('=+'*50, end='')
 print('\nYoutube Video Downloader')
-print('=+'*50,end='')
+print('=+'*50, end='')
 
 url = input("\nEnter URL : ")
 
 ydl_opts = {
     'format': 'bestvideo+bestaudio/best',
     'merge_output_format': 'mp4',
-    'extractor_args': {'youtube': {'player_client': ['android', 'web']}},
+    'extractor_args': {
+        'youtube': {
+            'player_client': ['ios', 'android', 'mweb', 'web']
+        }
+    },
     'nocheckcertificate': True,
     'retries': 10,
     'fragment_retries': 10,
@@ -18,4 +21,3 @@ ydl_opts = {
 
 with yt_dlp.YoutubeDL(ydl_opts) as ydl:
     ydl.download([url])
-    
