@@ -2,7 +2,13 @@ import os
 import gradio as gr
 import yt_dlp
 
-def download_youtube_video(url):
+try:
+    import spaces
+    has_spaces = True
+except ImportError:
+    has_spaces = False
+
+def _download_logic(url):
     if not url or not url.strip():
         return None, "⚠️ Please enter a valid YouTube URL."
 
@@ -25,6 +31,14 @@ def download_youtube_video(url):
             return output_file, f"✅ Successfully downloaded: {info.get('title')}"
     except Exception as e:
         return None, f"❌ Error: {str(e)}"
+
+if has_spaces:
+    @spaces.GPU
+    def download_youtube_video(url):
+        return _download_logic(url)
+else:
+    def download_youtube_video(url):
+        return _download_logic(url)
 
 demo = gr.Interface(
     fn=download_youtube_video,
