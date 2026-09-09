@@ -1,20 +1,6 @@
----
-title: Youtube Video Downloader
-emoji: 🎬
-colorFrom: red
-colorTo: yellow
-sdk: gradio
-sdk_version: 6.26.0
-app_file: app.py
-pinned: false
-license: mit
----
+# YouTube Video Downloader (CLI) 🎥
 
-# YouTube Video Downloader (CLI & Web UI) 🎥
-
-A lightweight, robust Python application built with [`yt-dlp`](https://github.com/yt-dlp/yt-dlp), [`ffmpeg`](https://ffmpeg.org/), and [`Gradio`](https://gradio.app/) to download high-quality YouTube videos directly in `.mp4` format.
-
-Includes both a **Terminal CLI** interface and a modern **Web Interface**.
+A lightweight, robust Python command-line utility built with [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) and [`ffmpeg`](https://ffmpeg.org/) to download high-quality YouTube videos directly in `.mp4` format.
 
 ---
 
@@ -30,9 +16,8 @@ Includes both a **Terminal CLI** interface and a modern **Web Interface**.
 ## ✨ Features
 
 - 🚀 **Highest Quality Video & Audio**: Automatically fetches the best video and audio streams (`bestvideo+bestaudio`).
-- 🎬 **Native MP4 Output**: Merges streams seamlessly into a single `.mp4` container.
-- 🌐 **Web Interface**: Interactive browser-based UI using Gradio.
-- 🛡️ **Anti-Throttling Bypass**: Configured with mobile/web client fallback (`android`, `web`) to prevent `Connection reset by peer` errors.
+- 🎬 **Native MP4 Output**: Merges streams seamlessly into a single `.mp4` container compatible with macOS (QuickTime), Windows, iOS, and Android.
+- 🛡️ **Anti-Throttling Bypass**: Configured with mobile/web client fallback (`android`, `web`) to prevent connection resets.
 - 🔄 **Auto-Retries**: Resilient against network drops with automatic fragment retries.
 
 ---
@@ -53,7 +38,7 @@ Make sure you have the following installed on your system:
 
 1. **Clone the repository**:
    ```bash
-   git clone https://github.com/your-username/youtube_video_downloader.git
+   git clone https://github.com/charanteja-k/youtube_video_downloader.git
    cd youtube_video_downloader
    ```
 
@@ -75,30 +60,27 @@ Make sure you have the following installed on your system:
 
 ---
 
-## 🚀 How to Run
+## 🚀 Usage
 
-### Option 1: Terminal CLI
+Run the script in your terminal:
+
 ```bash
 python3 main.py
 ```
 
-### Option 2: Web Interface (Gradio)
-```bash
-python3 app.py
+Paste the YouTube video URL when prompted:
+```text
+==================================================
+🎬 YouTube Video Downloader (CLI)
+==================================================
+
+Enter YouTube URL: https://youtu.be/EXAMPLE_URL
 ```
-Then open `http://127.0.0.1:7860` in your browser!
 
----
-
-## 🌐 Deploying to Hugging Face Spaces
-
-1. Create a **New Space** on [Hugging Face](https://huggingface.co/new-space).
-2. Select **Gradio** as the Space SDK.
-3. Push/Upload all repository files (`app.py`, `requirements.txt`, `packages.txt`, `README.md`).
-4. Hugging Face will automatically build and host your web application for free!
+The video will be downloaded into your project directory as a ready-to-watch `.mp4` file!
 
 ---
 
 ## 📄 License
 
-Distributed under the MIT License. See `LICENSE` for more information.
+Distributed under the MIT License.
