@@ -1,6 +1,10 @@
-# YouTube Video Downloader (CLI) 🎥
+# 🎬 Ultimate YouTube Video & Audio Downloader (CLI)
 
-A lightweight, robust Python command-line utility built with [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) and [`ffmpeg`](https://ffmpeg.org/) to download high-quality YouTube videos directly in `.mp4` format.
+[![Python 3.8+](https://img.shields.io/badge/python-3.8+-blue.svg)](https://www.python.org/downloads/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+[![yt-dlp](https://img.shields.io/badge/powered%20by-yt--dlp-red.svg)](https://github.com/yt-dlp/yt-dlp)
+
+A powerful, interactive command-line application built in Python using [`yt-dlp`](https://github.com/yt-dlp/yt-dlp) and [`ffmpeg`](https://ffmpeg.org/). Easily download YouTube videos in maximum quality (1080p/4K MP4), extract high-quality MP3 audio, and manage playlist downloads with a clean terminal interface.
 
 ---
 
@@ -15,19 +19,21 @@ A lightweight, robust Python command-line utility built with [`yt-dlp`](https://
 
 ## ✨ Features
 
-- 🚀 **Highest Quality Video & Audio**: Automatically fetches the best video and audio streams (`bestvideo+bestaudio`).
-- 🎬 **Native MP4 Output**: Merges streams seamlessly into a single `.mp4` container compatible with macOS (QuickTime), Windows, iOS, and Android.
-- 🛡️ **Anti-Throttling Bypass**: Configured with mobile/web client fallback (`android`, `web`) to prevent connection resets.
-- 🔄 **Auto-Retries**: Resilient against network drops with automatic fragment retries.
+- 🎥 **Multiple Video Quality Options**: Download in **Ultra HD / 1080p / 4K** or **720p HD** (for smaller file size).
+- 🎵 **Audio Extraction (MP3)**: Convert YouTube videos directly to **192kbps MP3** audio (perfect for songs, podcasts, and lectures).
+- 🛑 **Smart Playlist Handling**: Detects playlist URLs and lets you choose between downloading **only the single video** or the **entire playlist**.
+- 📂 **Auto-Organized Downloads**: Automatically saves all media inside a dedicated `downloads/` directory (playlists get their own subfolders!).
+- 🎬 **Native MP4 Merging**: Uses `ffmpeg` to remux separate video and audio streams into standard, widely-compatible `.mp4` containers.
+- 🛡️ **Network Resilient**: Automatic retries for fragmented media streams and SSL bypass settings.
 
 ---
 
 ## 📋 Prerequisites
 
-Make sure you have the following installed on your system:
+Before running the application, make sure you have the following installed:
 
-1. **Python 3.8+**: [python.org](https://www.python.org/)
-2. **FFmpeg**: Required for merging video and audio streams into MP4.
+1. **Python 3.8+**: Download from [python.org](https://www.python.org/)
+2. **FFmpeg**: Required for merging video/audio streams and converting to MP3.
    - **macOS**: `brew install ffmpeg`
    - **Linux**: `sudo apt install ffmpeg`
    - **Windows**: Install via `winget install ffmpeg` or download from [ffmpeg.org](https://ffmpeg.org/download.html).
@@ -42,7 +48,7 @@ Make sure you have the following installed on your system:
    cd youtube_video_downloader
    ```
 
-2. **Create and activate a virtual environment**:
+2. **Create and activate a virtual environment** *(recommended)*:
    ```bash
    # macOS / Linux
    python3 -m venv venv
@@ -60,27 +66,51 @@ Make sure you have the following installed on your system:
 
 ---
 
-## 🚀 Usage
+## 🚀 Usage Guide
 
-Run the script in your terminal:
+Run the script from your terminal:
 
 ```bash
 python3 main.py
 ```
 
-Paste the YouTube video URL when prompted:
+### Terminal Walkthrough Example:
+
 ```text
 ==================================================
 🎬 YouTube Video Downloader (CLI)
 ==================================================
 
-Enter YouTube URL: https://youtu.be/EXAMPLE_URL
+Enter YouTube URL: https://www.youtube.com/watch?v=EXAMPLE_VIDEO
+
+ Select Download Mode: 
+  [1] Best Quality Video (1080p / 4K MP4)
+  [2] Standard HD Video (720p MP4)
+  [3] Audio Only (MP3)
+
+ Enter choice [1-3] only [default : 1]: 1
+
+ Starting Download...
+[info] Downloading 1 format(s): 616+251
+[Merger] Merging formats into "downloads/Video_Title.mp4"
+
+✅ Download completed! Files saved in: /path/to/youtube_video_downloader/downloads
 ```
 
-The video will be downloaded into your project directory as a ready-to-watch `.mp4` file!
+---
+
+## 📁 Project Structure
+
+```text
+youtube_video_downloader/
+├── main.py              # Main interactive CLI script
+├── requirements.txt     # Python dependencies (yt-dlp)
+├── .gitignore           # Git ignore file (excludes venv and downloads/)
+└── README.md            # Project documentation
+```
 
 ---
 
 ## 📄 License
 
-Distributed under the MIT License.
+Distributed under the MIT License. See `LICENSE` for details.
