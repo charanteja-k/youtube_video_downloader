@@ -1,6 +1,9 @@
 import sys
 import os
 import yt_dlp
+from sub import download_subtitles
+from validurl import is_valid_youtube_url
+from audio import get_multiple_audio_tracks, download_audio_tracks, get_full_lang_name, get_lang_code_from_name
 
 
 def main():
@@ -8,11 +11,18 @@ def main():
     print("🎬 YouTube Video Downloader (CLI)")
     print("=" * 50)
 
-    url = input("\nEnter YouTube URL: ").strip()
-
-    if not url:
-        print("❌ Error: No URL provided.")
-        sys.exit(1)
+    url = None
+    while not url:
+        user_input = input("\nEnter YouTube URL: ").strip()
+        if not user_input:
+            print("❌ Error: No URL provided.")
+            continue
+            
+        if not is_valid_youtube_url(user_input):
+            print("❌ Error: Invalid URL. Please enter a valid YouTube URL.")
+            continue
+            
+        url = user_input
     
     download_dir = os.path.join(os.getcwd(),'downloads')
     os.makedirs(download_dir, exist_ok=True)
@@ -37,6 +47,40 @@ def main():
 
         if pl_choice == '1':
             noplaylist = True
+
+    sub_choice = input('\n Do you want to download subtitles too? (y/n) [default : n]: ').strip().lower()
+    download_subs = sub_choice == 'y'
+
+    print("\n Checking for multiple audio tracks...")
+    audio_tracks = get_multiple_audio_tracks(url)
+    selected_audio_tracks = {}
+    
+    if audio_tracks:
+        available_langs = list(audio_tracks.keys())
+        available_lang_names = [get_full_lang_name(l) for l in available_langs]
+        print(f" Found multiple audio tracks in languages: {', '.join(available_lang_names)}")
+        
+        while True:
+            lang_input = input(' Enter languages to download (comma separated, e.g. "telugu, hindi") or press Enter to skip: ').strip().lower()
+            if not lang_input:
+                break
+                
+            input_lang_names = [l.strip() for l in lang_input.split(',')]
+            input_lang_codes = [get_lang_code_from_name(l) for l in input_lang_names]
+            
+            invalid_lang_names = []
+            for i, code in enumerate(input_lang_codes):
+                if code not in available_langs:
+                    invalid_lang_names.append(input_lang_names[i])
+            
+            if invalid_lang_names:
+                print(f" ❌ Invalid or misspelled languages: {', '.join(invalid_lang_names)}. Available languages are: {', '.join(available_lang_names)}")
+            else:
+                for code in input_lang_codes:
+                    selected_audio_tracks[code] = audio_tracks[code]
+                break
+    else:
+        print(" No additional audio tracks found.")
 
     ydl_opts = {
         'nocheckcertificate': True,
@@ -84,6 +128,15 @@ def main():
     #setting download path
     print('\n Starting Download')
     try:
+        if download_subs:
+            download_subtitles(url, download_dir)
+            print("\n Proceeding to download main video/audio...")
+            
+        if selected_audio_tracks:
+            print("\n Downloading additional audio tracks...")
+            download_audio_tracks(url, selected_audio_tracks, download_dir)
+            print("\n Proceeding to download main video/audio...")
+            
         with yt_dlp.YoutubeDL(ydl_opts) as ydl:
             ydl.download([url])
         print(f"\n✅ Download completed! Files saved in: {download_dir}")
