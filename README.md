@@ -19,8 +19,11 @@ A powerful, interactive command-line application built in Python using [`yt-dlp`
 
 ## ✨ Features
 
+- 🌐 **URL Validation**: Automatically verifies and ensures that only valid YouTube links are processed.
 - 🎥 **Multiple Video Quality Options**: Download in **Ultra HD / 1080p / 4K** or **720p HD** (for smaller file size).
 - 🎵 **Audio Extraction (MP3)**: Convert YouTube videos directly to **192kbps MP3** audio (perfect for songs, podcasts, and lectures).
+- 🔊 **Multiple Audio Tracks**: Automatically detects dubbed videos with multiple audio languages, lists them using their full language names, and lets you select specific tracks to download.
+- 📝 **Subtitle Downloads**: Provides an interactive prompt to effortlessly download video subtitles (.vtt files).
 - 🛑 **Smart Playlist Handling**: Detects playlist URLs and lets you choose between downloading **only the single video** or the **entire playlist**.
 - 📂 **Auto-Organized Downloads**: Automatically saves all media inside a dedicated `downloads/` directory (playlists get their own subfolders!).
 - 🎬 **Native MP4 Merging**: Uses `ffmpeg` to remux separate video and audio streams into standard, widely-compatible `.mp4` containers.
